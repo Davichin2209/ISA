@@ -1,3 +1,11 @@
+// agregar al inicio de anim.js, antes de setInterval(actualizarLetras, ...)
+function desbloquearAudio() {
+  audio.play().catch((e) => console.log("No se pudo reproducir:", e));
+  document.removeEventListener("touchend", desbloquearAudio);
+  document.removeEventListener("click", desbloquearAudio);
+}
+document.addEventListener("touchend", desbloquearAudio, { once: true });
+document.addEventListener("click", desbloquearAudio, { once: true });
 // Sincronizar las letras con la canción
 var audio = document.querySelector("audio");
 var lyrics = document.querySelector("#lyrics");
