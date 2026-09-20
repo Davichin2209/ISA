@@ -1,6 +1,11 @@
 // agregar al inicio de anim.js, antes de setInterval(actualizarLetras, ...)
 function desbloquearAudio() {
   audio.play().catch((e) => console.log("No se pudo reproducir:", e));
+    var hint = document.getElementById("audio-hint");
+    if (hint) {
+        hint.style.opacity = "0";
+        setTimeout(() => hint.remove(), 1000);
+    }
   document.removeEventListener("touchend", desbloquearAudio);
   document.removeEventListener("click", desbloquearAudio);
 }
